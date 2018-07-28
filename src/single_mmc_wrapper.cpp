@@ -2,7 +2,7 @@
  This file is part of the Ristra XMOF2D project.
  Please see the license file at the root of this repository, or at:
  https://github.com/laristra/XMOF2D/blob/master/LICENSE
- 
+
  Created by Evgeny Kikinzon.
  Copyright © 2018, Los Alamos National Security, LLC.
  All rights reserved.
@@ -15,12 +15,12 @@
 
 XMOF2D::XMOF_Reconstructor* xmof2d_rec = nullptr;
 XMOF2D::IRTolerances xmof2d_tol = {
-  .dist_eps = 1.0e-14,
-  .div_eps = 1.0e-6,
-  .ddot_eps = 1.0e-14,
-  .area_eps = 1.0e-14,
-  .ang_eps = 1.0e-13,
-  .mof_max_iter = 10000
+  /*.dist_eps =*/ 1.0e-14,
+  /*.div_eps =*/ 1.0e-6,
+  /*.ddot_eps =*/ 1.0e-14,
+  /*.area_eps =*/ 1.0e-14,
+  /*.ang_eps =*/ 1.0e-13,
+  /*.mof_max_iter =*/ 10000
 };
 XMOF2D::MeshConfig xmof2d_single_mmc_mconfig;
 XMOF2D::CellsMatData xmof2d_mmc_mat_data;
@@ -133,7 +133,7 @@ void xmof2d_initialize_reconstructor() {
   if (xmof2d_single_mmc_mconfig.icells_faces.empty()) {
     throw XMOF2D::Exception("Vertices of a multi-material cell should be set first!");
   }
-  
+
   delete xmof2d_rec;
   xmof2d_rec = new XMOF2D::XMOF_Reconstructor(xmof2d_single_mmc_mconfig, xmof2d_tol);
   if (!xmof2d_mmc_mat_data.cells_materials.empty())

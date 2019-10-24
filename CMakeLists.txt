@@ -80,6 +80,9 @@ set (XMOF2DLIB xmof2d)#${CONFIG_SUFFIX})
 add_library(${XMOF2DLIB} STATIC ${xmof2Dfiles})
 message(STATUS "Building library " ${XMOF2DLIB})
 
+target_include_directories(${XMOF2DLIB}
+  PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/include")
+
 # Default INSTALL Directory
 
 ####if (NOT INSTALL_DIR)
@@ -155,4 +158,7 @@ message(STATUS "Building library " ${XMOF2DLIB})
 ####install(FILES ${PROJECT_BINARY_DIR}/XMOF2DConfig.cmake
 ####        DESTINATION ${INSTALL_DIR}/lib)
 
-shapo_install_thirdparty(xmof2d)
+shapo_configure_thirdparty(xmof2d)
+shapo_install_target(xmof2d)
+
+set(EXPECTED_XMOF2D TRUE CACHE INTERNAL "")

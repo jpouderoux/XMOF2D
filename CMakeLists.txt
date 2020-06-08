@@ -49,7 +49,6 @@ endif ()
 
 # include files and source files
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 set (xmof2Dfiles src/basemesh.cpp
                  src/cell.cpp
                  src/face.cpp
@@ -80,7 +79,9 @@ set (XMOF2DLIB xmof2d)#${CONFIG_SUFFIX})
 add_library(${XMOF2DLIB} STATIC ${xmof2Dfiles})
 message(STATUS "Building library " ${XMOF2DLIB})
 
-target_include_directories(${XMOF2DLIB}
+# Note: we use BEFORE option below to avoid a bug that appeared where Python's
+# node.h was included instead of XMOF's one.
+target_include_directories(${XMOF2DLIB} BEFORE
   PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/include")
 
 # Default INSTALL Directory
